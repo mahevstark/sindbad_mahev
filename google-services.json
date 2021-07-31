@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "430839354765",
+    "project_id": "sindbad-321318",
+    "storage_bucket": "sindbad-321318.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430839354765:android:b309398303c58f6856d9c4",
+        "android_client_info": {
+          "package_name": "com.dedevelopers.SinBad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430839354765-mh6opf01gc0v5b88n2rgvsrm9f513b11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZwfVnzHE-W9F_MpGmc9BBZMICFafK59w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430839354765-mh6opf01gc0v5b88n2rgvsrm9f513b11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
