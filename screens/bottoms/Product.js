@@ -10,6 +10,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 import { AntDesign } from '@expo/vector-icons';
 import DropdownAlert from "react-native-dropdownalert";
 import { WebView } from 'react-native-webview';
+import RenderHtml from 'react-native-render-html';
 
 let dropDownAlertRef;
 import { doPost } from "./../common/apiCalls";
@@ -30,7 +31,7 @@ const Product = (props) => {
 
     const onWebViewMessage = (event) => {
         setWebviewHeight(Number(event.nativeEvent.data))
-      }
+    }
     useEffect(() => {
         loadData()
         refresh_items_in_wishlist_status()
@@ -220,6 +221,7 @@ const Product = (props) => {
             });
         })
     }
+    // return (<Text>e</Text>)
 
     return (
         <View style={{ flex: 1, }}>
@@ -235,29 +237,29 @@ const Product = (props) => {
                 </View>
                 <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
                     <View
-                        
+
                     >
-                       
+
                         <Image
-                        style={{ marginTop:30,width:"100%",height:350 ,resizeMode:"contain",alignSelf:"center"}}
-                        source={{uri:prod?.img}}
-                    />
-                     <View style={{ flexDirection: 'row', width: "80%", alignSelf: 'center', marginTop: 40, paddingTop: 5, justifyContent: 'space-between', position: 'absolute', top: 0 }}>
+                            style={{ marginTop: 30, width: "100%", height: 350, resizeMode: "contain", alignSelf: "center" }}
+                            source={{ uri: prod?.img }}
+                        />
+                        <View style={{ flexDirection: 'row', width: "80%", alignSelf: 'center', marginTop: 40, paddingTop: 5, justifyContent: 'space-between', position: 'absolute', top: 0 }}>
                             <TouchableOpacity style={{
-                                backgroundColor:"#fff",
-                                padding:10,
-                                borderRadius:100
+                                backgroundColor: "#fff",
+                                padding: 10,
+                                borderRadius: 100
                             }} onPress={() => {
                                 navigation.goBack()
                             }}>
                                 <ArrowLeft />
                             </TouchableOpacity>
                             <TouchableOpacity
-                                    style={{
-                                        backgroundColor:"#fff",
-                                        padding:10,
-                                        borderRadius:100
-                                    }}
+                                style={{
+                                    backgroundColor: "#fff",
+                                    padding: 10,
+                                    borderRadius: 100
+                                }}
                                 onPress={() => {
                                     do_wish(prod)
                                 }}>
@@ -321,12 +323,22 @@ const Product = (props) => {
                             <Text style={{ fontFamily: 'PBo', fontSize: 15, color: '#070704' }}>Description</Text>
                             <Text style={{ fontFamily: 'PMe', fontSize: 15, color: '#606060', marginLeft: 25 }}>Reviews</Text>
                         </View>
-                        <WebView
-                        scrollEnabled={true}
-                        onMessage={onWebViewMessage}
-                        injectedJavaScript='window.ReactNativeWebView.postMessage(document.body.scrollHeight /1 )'
-                        style={{height:webViewHeight,width:'100%',backgroundColor:"#f1f1f1"}} source={{html:'<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body dir="'+(lang=="arabic"?"rtl":"ltr")+'" style="background-color:#f1f1f1;">'+prod?.description+'</body></html>'}} />
-                        {/* <Text style={{ fontFamily: 'PMe', fontSize: 10 }}>{}</Text> */}
+
+                        {/* <RenderHtml
+                            contentWidth={width}
+                            source={prod?.description}
+                            /> */}
+                        <View
+                            renderToHardwareTextureAndroid={true}>
+                            <WebView
+                                // androidHardwareAccelerationDisabled={true}
+                                containerStyle={{ opacity: 0.99 }}
+                                scrollEnabled={true}
+                                onMessage={onWebViewMessage}
+                                injectedJavaScript='window.ReactNativeWebView.postMessage(document.body.scrollHeight /1 )'
+                                style={{ height: webViewHeight, width: '100%', backgroundColor: "#f1f1f1" }} source={{ html: '<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body dir="' + (lang == "arabic" ? "rtl" : "ltr") + '" style="background-color:#f1f1f1;">' + prod?.description + '</body></html>' }} />
+                        </View>
+                        {/* <Text style={{ fontFamily: 'PMe', fontSize: 10 }}>{prod?.description}</Text> */}
 
                     </View>
                     <View

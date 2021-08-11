@@ -39,7 +39,7 @@ import {retrieveItem, storeItem, doConsole} from './../common/functions';
 import Loader from '../common/Loader';
 import { urls } from '../common/Api_urls';
 let dropDownAlertRef;
-
+import { WebView } from 'react-native-webview';
 const Privacy = (props) => {
     const { type } = props?.route?.params ?? {type:"privacy"}
     const [loading,setLoading] = useState(true)
@@ -47,13 +47,19 @@ const Privacy = (props) => {
     const [lang, setRenderr] = React.useState("en")
     const [orders, setOrders] = React.useState([])
 
+    const [webViewHeight, setWebviewHeight] = useState(viewportHeight)
+
+
     const [user,setUser] = useState({})
 
     const [title, setTitle] = React.useState("")
     const [content, setContent] = React.useState("")
-
+    const onWebViewMessage = (event) => {
+        setWebviewHeight(Number(event.nativeEvent.data))
+      }
     useEffect(()=>{
         getUser()
+        loadOrders()
     },[])
 
     const getUser=()=>{
@@ -63,8 +69,8 @@ const Privacy = (props) => {
     }
 
     useEffect(()=>{
-        if(user && user?.token)
-        loadOrders()
+        // if(user && user?.token)
+        // loadOrders()
     },[user])
 
   
@@ -74,6 +80,7 @@ const Privacy = (props) => {
 
         const { isError, data } = await doPost(dbData, "get_page_api");
         console.log(dbData)
+        console.log(data)
         console.log(urls.API + "get_page_api");
         if (isError) {
             dropDownAlertRef.alertWithType("error","Error","Network error")
@@ -115,7 +122,7 @@ const Privacy = (props) => {
                             <View style={{ flexDirection: 'row', width: '90%', alignSelf: 'center', justifyContent: 'space-between', marginTop: Platform.OS == 'android' ? 25 : 5, alignItems: 'center' }}>
 
                                 <TouchableOpacity>
-                                    <ArrowLeft />
+                                    {/* <ArrowLeft /> */}
                                 </TouchableOpacity>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', }}>
 
@@ -137,9 +144,14 @@ const Privacy = (props) => {
                                         alignSelf: "center",
                                     }}
                                 >
-                                <Text style={{}}>
+                                    <WebView
+                                    scrollEnabled={true}
+                                    onMessage={onWebViewMessage}
+                                    injectedJavaScript='window.ReactNativeWebView.postMessage(document.body.scrollHeight /1 )'
+                                    style={{height:webViewHeight,width:'100%',backgroundColor:"#f1f1f1"}} source={{html:'<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body dir="'+(lang=="arabic"?"rtl":"ltr")+'" style="background-color:#f1f1f1;">'+content+'</body></html>'}} />
+                                {/* <Text style={{}}>
                                 {content}
-                                </Text>
+                                </Text> */}
                                 </View>
                             </View>
                         </View>

@@ -383,16 +383,15 @@ export function HomeScreen() {
                                         <EvilIcons name="navicon" size={50} color="#FFF" />
                                     </TouchableOpacity>
                                     <View style={{ flexDirection: "row", flex: 0.8, alignItems: 'center', alignSelf: 'flex-start', backgroundColor: "#F5F5F5", borderRadius: 8, paddingVertical: 12 }}>
-                                        <View style={{ flex: 0.15, alignItems: 'center' }}>
-                                            <Image style={{ width: 22, height: 22, resizeMode: 'contain' }} source={require('./../../assets/image/sss.png')} />
-                                        </View>
-                                        <View style={{ flex: 0.70, alignItems: "flex-start" }}>
+                                        
+                                        <View style={{ flex: 0.85, alignItems: "flex-start" }}>
                                             <TextInput 
                                             placeholder={"Search "}
                                             style={{
                                                 color: "#B7B7B7",
                                                 fontFamily: 'p-regular',
                                                 fontSize: 12,
+                                                paddingLeft:15
                                             }} 
                                             value={search_text}
                                             onChangeText={(t)=>setSearchText(t)}
@@ -402,7 +401,7 @@ export function HomeScreen() {
                                             />
                                         </View>
                                         <View style={{ flex: 0.15, alignItems: 'center' }}>
-                                            <Image style={{ width: 22, height: 22, resizeMode: 'contain' }} source={require('./../../assets/image/camm.png')} />
+                                            <Image style={{ width: 22, height: 22, resizeMode: 'contain' }} source={require('./../../assets/image/sss.png')} />
                                         </View>
                                     </View>
                                 </View>

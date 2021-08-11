@@ -51,6 +51,7 @@ const Categories = () => {
 
     useEffect(()=>{
         getUser()
+        loadOrders()
     },[])
 
     const getUser=()=>{
@@ -60,8 +61,8 @@ const Categories = () => {
     }
 
     useEffect(()=>{
-        if(user && user?.token)
-        loadOrders()
+        // if(user && user?.token)
+        // loadOrders()
     },[user])
 
   

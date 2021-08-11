@@ -214,13 +214,7 @@ const HomeStackNavigator = ({ navigation, routes }) => {
           headerShown: false,
         }}
       />
-      <HomeStack.Screen
-        name="Privacy"
-        component={Privacy}
-        options={{
-          headerShown: false,
-        }}
-      />
+      
       <HomeStack.Screen
         name="SearchResult"
         component={SearchResult}
@@ -231,6 +225,13 @@ const HomeStackNavigator = ({ navigation, routes }) => {
       <HomeStack.Screen
         name="Contactus"
         component={Contactus}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen
+        name="Privacy"
+        component={Privacy}
         options={{
           headerShown: false,
         }}
