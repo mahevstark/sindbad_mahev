@@ -125,6 +125,7 @@ export default function App() {
 				} */}
                 <Stack.Screen options={{ headerShown: false }} name="Root" component={Root} />
 			</Stack.Navigator>
+            
 		</NavigationContainer>
 
 
